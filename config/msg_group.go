@@ -89,7 +89,7 @@ func (c *Context) SendGroupUpdate(req *MsgGroupUpdateReq) error {
 	// 	c.Error("发送群更新消息失败！没有data数据")
 	// 	return nil
 	// }
-	content := "{0} "
+	content := "{0}"
 	switch req.Attr {
 	case common.GroupAttrKeyName:
 		content += fmt.Sprintf(`updated the group name to "%s"`, req.Data[common.GroupAttrKeyName])
@@ -105,9 +105,9 @@ func (c *Context) SendGroupUpdate(req *MsgGroupUpdateReq) error {
 	case common.GroupAttrKeyForbidden:
 		forbidden, _ := req.Data[common.GroupAttrKeyForbidden]
 		if forbidden == "1" {
-			content += fmt.Sprintf(`set Group Silent ON`)
+			content += fmt.Sprintf(`set Group Forbidden ON`)
 		} else {
-			content += fmt.Sprintf(`set Group silent OFF`)
+			content += fmt.Sprintf(`set Group Forbidden OFF`)
 		}
 		break
 	case common.GroupAttrKeyInvite:
