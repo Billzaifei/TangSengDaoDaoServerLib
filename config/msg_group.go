@@ -113,7 +113,7 @@ func (c *Context) SendGroupUpdate(req *MsgGroupUpdateReq) error {
 	case common.GroupAttrKeyInvite:
 		invite, _ := req.Data[common.GroupAttrKeyInvite]
 		if invite == "1" {
-			content += fmt.Sprintf(`“set Group Invitation Confirmation ON”，it need the confirmation of the group Owner/Administrator for any invitation.`)
+			content += fmt.Sprintf(`set Group Invitation Confirmation ON, it need the confirmation of the group Owner/Administrator for any invitation.`)
 		} else {
 			content += fmt.Sprintf(`set Default Group Joining Mode ON`)
 		}
@@ -161,7 +161,7 @@ func (c *Context) SendGroupMemberAdd(req *MsgGroupMemberAddReq) error {
 	for index := range members {
 		params = append(params, fmt.Sprintf("{%d}", index))
 	}
-	content := fmt.Sprintf("%s invite %s to join the group chat", req.OperatorName, strings.Join(params, ","))
+	content := fmt.Sprintf("%s invited %s to join the group chat", req.OperatorName, strings.Join(params, ","))
 
 	return c.SendMessage(&MsgSendReq{
 		Header: MsgHeader{
